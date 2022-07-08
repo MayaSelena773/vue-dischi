@@ -1,5 +1,6 @@
 <template>
     <header>
+        <!--Logo Header-->
         <img src="../assets/img/logo-spotify.png" alt="logo" class="small-logo">
     </header>
 </template>
@@ -18,7 +19,7 @@ header {
 
     .small-logo {
         width: 30px;
-        margin: 0.5rem;
+        margin: 0.5rem 1rem;
     }
 }
 
