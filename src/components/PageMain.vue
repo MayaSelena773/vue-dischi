@@ -1,55 +1,12 @@
 <template>
     <main>
         <div class="albums-container">
-            <div class="cards">
+            <div class="cards" v-for="album in albumsList" :key="album.index">
                 <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
-                </div>
-
-                <div class="card">
-                    <img src="" alt="">
-                    <h4>Ciao</h4>
+                    <img class="album-poster" :src="album.poster" :alt="album.author">
+                    <h4>{{album.title}}</h4>
+                    <h5>{{album.author}}</h5>
+                    <h5>{{album.year}}</h5>
                 </div>
             </div>
         </div>
@@ -57,34 +14,61 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-    name:'PageMain'
+    name:'PageMain',
+    data() {
+        return{
+            url: "https://flynn.boolean.careers/exercises/api/array/music",
+            albumsList: [],
+        }
+    },
+    created(){
+        this.getAlbums();
+    },
+    methods: {
+        getAlbums() {
+            axios.get(this.url).then((result) => {
+                this.albumsList = result.data.response
+            });
+        }
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+@import './style/vars.scss';
+
 main {
     background-color: lightgrey;
     width: 100%;
     height: auto;
+    color: white;
 
     .albums-container {
-        margin: 0 200px;
+        margin: 0 150px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
 
         .cards {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
             padding: 2rem 0;
  
             .card {
-            width: 130px;
-            height: 250px;
-            background-color: aquamarine;
+            width: 150px;
+            height: 270px;
+            background-color: $brand_primary_color;
             margin: 1.5rem;
             text-align: center;
+
+                .album-poster {
+                    margin: 1rem;
+                    width: 120px;
+                    height: 120px;
+                }
             }
         }
     }
