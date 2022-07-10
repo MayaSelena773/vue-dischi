@@ -41,7 +41,7 @@ export default {
 @import './style/vars.scss';
 
 main {
-    background-color: lightgrey;
+    background-color: $brand_secondary_color;
     width: 100%;
     height: auto;
     color: white;
@@ -53,21 +53,32 @@ main {
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
+        padding: 2.5rem 0;
 
         .cards {
-            padding: 2rem 0;
- 
+            margin: 1rem;
+
             .card {
             width: 150px;
             height: 270px;
             background-color: $brand_primary_color;
-            margin: 1.5rem;
             text-align: center;
 
                 .album-poster {
                     margin: 1rem;
                     width: 120px;
                     height: 120px;
+                }
+
+                h4 {
+                    text-transform: uppercase;
+                    font-weight: bold;
+                    margin-bottom: 1rem;
+                    padding: 0 10px;
+                }
+
+                h5 {
+                    color:rgb(121, 125, 125);
                 }
             }
         }
