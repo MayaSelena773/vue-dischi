@@ -2,13 +2,11 @@
 
 <div class="search flex">
     
-    <input  
-    type="text" 
-    placeholder="Cerca il tuo album preferito">
-
-    <label for="contacts-search">
-        <i class="fa-solid fa-magnifying-glass my_glass"></i>
-    </label>
+    <select v-model="genre" @change="onClickLabel()">
+        <option value="all">all</option>
+        <option value="rock">rock</option>
+        <option value="jazz">jazz</option>
+    </select>
 
 </div>              
     
@@ -16,8 +14,18 @@
 
 <script>
 export default {
-    name:'PageSearch'
-}
+    name:'PageSearch',
+    data(){
+        return {
+            genre: ''
+        }
+    },
+    methods: {
+        onClickLabel() {
+            this.$emit('changeGenre', this.genre);
+        }
+    }
+};
 
 </script>
 
@@ -26,9 +34,10 @@ export default {
 
 .search {
     background-color: $brand_secondary_color;
-    padding-right: 20px;
+    padding-left: 110px;
+    padding-top: 20px;
 
-    input {
+    select {
         padding: 10px;
         background-color: lightgreen;
     }
@@ -43,7 +52,7 @@ export default {
 
 .flex {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
 </style>
